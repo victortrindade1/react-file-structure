@@ -1,68 +1,95 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Jeito ótimo de estruturar os arquivos num projeto React
 
-## Available Scripts
+Fonte: https://medium.com/@Charles_Stover/optimal-file-structure-for-react-applications-f3e35ad0a145
 
-In the project directory, you can run:
+## Public
 
-### `npm start`
+Guarde arquivos estáticos, que nunca serão importados por um documento javascript, e nunca terão seus nomes modificados no pc do usuário. Estes arquivos irão para o cache do usuário.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## src/assets
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Arquivos compartilhados pela aplicação. São imagens, SASS, etc. É geralmente o diretório onde há o contato com outros profissionais não-programadores, como os designers.
 
-### `npm test`
+## src/utils
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Funções JS prontas, usadas globalmente no projeto. Também chamado de src/helpers ou src/packages em alguns projetos.
 
-### `npm run build`
+## src/components
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+App tb é component. Pasta única. Todos os Components estão nela.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## src/components/ComponentName
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Árvore hierárquica da pasta de cada Component (capitalize it!):
 
-### `npm run eject`
+my-app
+└── src
+└── components
+└── ComponentName
+├── ComponentName.css
+├── ComponentName.scss
+├── ComponentName-container.js
+├── ComponentName-redux.js
+├── ComponentName-styles.js
+├── ComponentName-view.js
+└── index.js
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### src/components/ComponentName/index.js
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+A única função do index.js é exportar o maior arquivo hierárquico.
+`export { default } from './Foobar';`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### src/components/ComponentName/ComponentName-view.js
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+São os stateless components. São funções puras. A maioria dos casos.
 
-## Learn More
+### src/components/ComponentName/ComponentName-styles.js
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Aqui ficam JSS. JSS é o css dentro do javascript `const StyledButton = injectSheet(styles)(Button)`.
+Comum em algumas libs, como MaterialUI.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### src/components/ComponentName/ComponentName-redux.js
 
-### Code Splitting
+São os mapStateToProps, mapDispatchToProps e connect do Redux.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### src/components/ComponentName/ComponentName-container.js
 
-### Analyzing the Bundle Size
+São os stateful components. As classes.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## src/components/ComponentName/SubComponent
 
-### Making a Progressive Web App
+Os sub-componentes possuirão os files com o nome do component e do subcomponent.
+Ex:
+github-repo
+├── icon
+│ ├── github-repo-icon.scss
+│ ├── github-repo-icon-view.js
+│ └── index.js
+├── title
+│ ├── github-repo-title.scss
+│ ├── github-repo-title-view.js
+│ └── index.js
+├── github-repo.scss
+├── github-repo-view.js
+└── index.js
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Acima, github-repo é um component, e icon é um subcomponent.
 
-### Advanced Configuration
+## src/routes
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Aonde ficam as rotas do react router.
 
-### Deployment
+## Tests
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Testes unitários dos arquivos ficam juntos com os arquivos.
+Ex:
+my-app
+└── src
+└── components
+└── component-name
+├── component-name-container.js
+├── component-name-container.test.js
+├── component-name-redux.js
+├── component-name-redux.test.js
+├── component-name-view.js
+└── component-name-view.test.js
