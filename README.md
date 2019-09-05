@@ -22,6 +22,7 @@ App tb é component. Pasta única. Todos os Components estão nela.
 
 Árvore hierárquica da pasta de cada Component (capitalize it!):
 
+```
 my-app
 └── src
 └── components
@@ -33,6 +34,7 @@ my-app
 ├── ComponentName-styles.js
 ├── ComponentName-view.js
 └── index.js
+```
 
 ### src/components/ComponentName/index.js
 
@@ -60,6 +62,8 @@ São os stateful components. As classes.
 
 Os sub-componentes possuirão os files com o nome do component e do subcomponent.
 Ex:
+
+```
 github-repo
 ├── icon
 │ ├── github-repo-icon.scss
@@ -72,6 +76,7 @@ github-repo
 ├── github-repo.scss
 ├── github-repo-view.js
 └── index.js
+```
 
 Acima, github-repo é um component, e icon é um subcomponent.
 
@@ -83,6 +88,8 @@ Aonde ficam as rotas do react router.
 
 Testes unitários dos arquivos ficam juntos com os arquivos.
 Ex:
+
+```
 my-app
 └── src
 └── components
@@ -93,3 +100,4 @@ my-app
 ├── component-name-redux.test.js
 ├── component-name-view.js
 └── component-name-view.test.js
+```
