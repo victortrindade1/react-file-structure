@@ -8,6 +8,7 @@ Guarde arquivos estáticos, que nunca serão importados por um documento javascr
 
 ## src
 
+```
 src
 ├── assets
 │ └──images
@@ -20,6 +21,7 @@ src
 ├── index.css
 ├── index.js
 └── service-worker.js
+```
 
 ## src/assets
 
