@@ -6,6 +6,21 @@ Fonte: https://medium.com/@Charles_Stover/optimal-file-structure-for-react-appli
 
 Guarde arquivos estáticos, que nunca serão importados por um documento javascript, e nunca terão seus nomes modificados no pc do usuário. Estes arquivos irão para o cache do usuário.
 
+## src
+
+src
+├── assets
+│ └──images
+│ └── logo.svg
+├── components
+│ └── app
+│ ├── app.css
+│ ├── app.js
+│ └── app.test.js
+├── index.css
+├── index.js
+└── service-worker.js
+
 ## src/assets
 
 Arquivos compartilhados pela aplicação. São imagens, SASS, etc. É geralmente o diretório onde há o contato com outros profissionais não-programadores, como os designers.
